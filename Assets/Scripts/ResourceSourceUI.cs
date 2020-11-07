@@ -1,18 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ResourceSourceUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject popupPanel;
+    public TextMeshProUGUI resourceQuantityText;
+    public ResourceSource resource;
+
+
+    void OnMouseEnter()
     {
-        
+        popupPanel.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseExit()
     {
-        
+        popupPanel.SetActive(false);
+    }
+
+    public void OnResourceQuantityChange()
+    {
+        resourceQuantityText.text = resource.quantity.ToString();
     }
 }

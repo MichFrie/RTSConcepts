@@ -13,15 +13,6 @@ public class ResourceSource : MonoBehaviour
     public int quantity;
 
     public UnityEvent onQuantityChange;
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void GatherResource(int amount, Player gatheringPlayer)
     {
