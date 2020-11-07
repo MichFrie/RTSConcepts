@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
 
         if (dist < minZoomDist && scrollInput > 0.0f)
             return;
-        else if (dist > maxZoomDist && scrollInput > 0.0f)
+        else if (dist > maxZoomDist && scrollInput < 0.0f)
             return;
         cam.transform.position += cam.transform.forward * scrollInput * zoomSpeed;
     }
