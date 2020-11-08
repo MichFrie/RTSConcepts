@@ -28,5 +28,6 @@ public class ResourceSource : MonoBehaviour
 
         if (onQuantityChange != null)
             onQuantityChange.Invoke();
+        gatheringPlayer.GainResource(type, amountToGive);
     } 
 }
