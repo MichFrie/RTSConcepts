@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Reflection;
+using UnityEngine;
 
 public class UnitMover : MonoBehaviour
 {
@@ -28,4 +29,24 @@ public class UnitMover : MonoBehaviour
         return destinations;
     }
 
+    public static Vector3[] GetUnitGroupDestionationsAroundResource(Vector3 resourcePos, int unitsNum)
+    {
+        Vector3[] destinations = new Vector3[unitsNum];
+        float unitDistanceGap = 360.0f / (float) unitsNum;
+
+        for (int i = 0; i < unitsNum; i++)
+        {
+            float angle = unitDistanceGap * i;
+            Vector3 dir = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
+            destinations[i] = resourcePos + dir;
+        }
+        return destinations;
+    }
+
+    public static Vector3 GetUnitDestinationAroundResource(Vector3 resourcePos)
+    {
+        float angle = Random.Range(0, 360);
+        Vector3 dir = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0, Mathf.Cos(angle * Mathf.Deg2Rad));
+        return resourcePos;
+    }
 }

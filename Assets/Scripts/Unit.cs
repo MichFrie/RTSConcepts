@@ -22,7 +22,12 @@ public class Unit : MonoBehaviour
 
     public void MoveToPosition(Vector3 pos)
     {
-        //navAgent.isStopped = false;
+        navAgent.isStopped = false;
         navAgent.SetDestination(pos);
+    }
+
+    public void GatherResource(ResourceSource resource, Vector3 pos)
+    {
+
     }
 }

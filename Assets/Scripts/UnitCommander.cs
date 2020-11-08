@@ -62,6 +62,18 @@ public class UnitCommander : MonoBehaviour
 
     void UnitsGatherResource(ResourceSource resource, Unit[] units)
     {
+        if(units.Length == 1)
+        {
+            units[0].GatherResource(resource, UnitMover.GetUnitDestinationAroundResource(resource.transform.position));
+        }
+        else
+        {
+            Vector3[] destinations = UnitMover.GetUnitGroupDestionationsAroundResource(resource.transform.position, units.Length);
+            for (int i = 0; i < units.Length; i++)
+            {
+                units[i].GatherResource(resource, destinations[i]);
+            }
+        }
 
     }
 }

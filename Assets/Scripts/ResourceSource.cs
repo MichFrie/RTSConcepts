@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
   public enum ResourceType
-    {
-        Food
-    }
+  {
+     Food
+  }
 
 public class ResourceSource : MonoBehaviour
 {
