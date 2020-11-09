@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class UnitCommander : MonoBehaviour
 {
@@ -29,10 +30,9 @@ public class UnitCommander : MonoBehaviour
 
                 if (hit.collider.CompareTag("Ground"))
                 {
-
+                    unitSelection.RemoveNullUnitsFromSelection();
                     UnitsMoveToPosition(hit.point, selectedUnits);
                     CreateSelectionMarker(hit.point, false);
-
                 }
 
                 else if (hit.collider.CompareTag("Resource"))
@@ -40,7 +40,25 @@ public class UnitCommander : MonoBehaviour
                     UnitsGatherResource(hit.collider.GetComponent<ResourceSource>(), selectedUnits);
                     CreateSelectionMarker(hit.point, true);
                 }
+
+                else if (hit.collider.CompareTag("Unit"))
+                {
+                    Unit enemy = hit.collider.gameObject.GetComponent<Unit>();
+                    if (!Player.me.IsMyUnit(enemy))
+                    {
+                        UnitsAttackEnemy(enemy, selectedUnits);
+                        CreateSelectionMarker(enemy.transform.position, false);
+                    }
+                }
             }
+        }
+    }
+
+    void UnitsAttackEnemy(Unit target, Unit[] units)
+    {
+        for(int i = 0; i < units.Length; i++)
+        {
+            units[i].AttackUnit(target);
         }
     }
 
@@ -62,7 +80,7 @@ public class UnitCommander : MonoBehaviour
 
     void UnitsGatherResource(ResourceSource resource, Unit[] units)
     {
-        if(units.Length == 1)
+        if (units.Length == 1)
         {
             units[0].GatherResource(resource, UnitMover.GetUnitDestinationAroundResource(resource.transform.position));
         }

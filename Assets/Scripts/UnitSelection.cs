@@ -112,4 +112,15 @@ public class UnitSelection : MonoBehaviour
     {
         return selectedUnits.ToArray();
     }
+
+    public void RemoveNullUnitsFromSelection()
+    {
+        for (int i = 0; i < selectedUnits.Count; i++)
+        {
+            if(selectedUnits[i] == null)
+            {
+                selectedUnits.RemoveAt(i);
+            }
+        }
+    }
 }

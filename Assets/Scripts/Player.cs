@@ -17,10 +17,22 @@ public class Player : MonoBehaviour
 
     public readonly int unitCost = 50;
 
+    public bool isMe;
+
+    public static Player me;
+
     //events
     [System.Serializable]
     public class UnityCreatedEvent : UnityEvent<Unit> { }
     public UnityCreatedEvent onUnitCreated;
+
+
+    void Awake()
+    {
+        if (isMe)
+            me = this;
+    }
+
 
     void Start()
     {
